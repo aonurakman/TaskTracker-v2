@@ -67,7 +67,6 @@
                                     <constraint firstItem="60G-Ni-5hd" firstAttribute="leading" secondItem="1kH-g0-L0S" secondAttribute="leading" id="45Z-Xb-jB5"/>
                                     <constraint firstItem="yx5-T7-hPv" firstAttribute="leading" secondItem="1kH-g0-L0S" secondAttribute="leading" id="7Rj-Us-qWG"/>
                                     <constraint firstItem="yx5-T7-hPv" firstAttribute="top" secondItem="1kH-g0-L0S" secondAttribute="top" id="e9M-E2-zTZ"/>
-                                    <constraint firstAttribute="bottom" secondItem="60G-Ni-5hd" secondAttribute="bottom" constant="10" id="iaU-2x-ajM"/>
                                     <constraint firstAttribute="trailing" secondItem="60G-Ni-5hd" secondAttribute="trailing" id="nF7-8F-9zz"/>
                                     <constraint firstAttribute="trailing" secondItem="yx5-T7-hPv" secondAttribute="trailing" id="riT-vF-7dJ"/>
                                 </constraints>
