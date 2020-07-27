@@ -86,6 +86,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tasks.removeAll()
         tasks = manager.refreshTasks() ?? []
         tableView.reloadData()
+        if tasks.count == 0 {
+            tableView.backgroundView = UIImageView(image: #imageLiteral(resourceName: "allDone"))
+            tableView.backgroundView?.contentMode = UIView.ContentMode.scaleAspectFit
+        }
+        else{
+            tableView.backgroundView = UIImageView(image: nil)
+        }
     }
 
     
