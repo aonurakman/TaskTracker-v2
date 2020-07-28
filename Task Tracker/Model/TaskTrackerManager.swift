@@ -6,27 +6,21 @@
 //  Copyright © 2020 Ahmet Onur Akman. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-
-protocol EntryDelegate {
-    func didSendNewTask(_ from: EntryViewController)
-}
-
-
-struct Manager{
+struct TaskTrackerManager{
     
-    func checkIfFirstTime(){ //Is it the first launch ever?
-        if !UserDefaults().bool(forKey: "setup") { // Is it the first time? Let's set up!
-            UserDefaults().set(true, forKey: "setup")
+    func checkIfItIsTheFirstLaunchEver(){ //Is it the first launch ever?
+        if !UserDefaults().bool(forKey: "firstLaunchEver") { // Is it the first time?
+            UserDefaults().set(true, forKey: "firstLaunchEver")
             UserDefaults().set(0, forKey: "count")
         }
     }
     
-    
     // Add the new task to the memory
-    func updateMemory(text: String, note: String, date: Date, count: Int){
-        let newTask = Task(name: text, notes: note, date: date, id: count)
+    func addNewTaskToTheMemory(name: String, note: String, date: Date, count: Int){
+        let newTask = Task(name: name, notes: note, date: date, id: count)
+        Task.addToCatalog(newTask)
         
         UserDefaults().set((UserDefaults().value(forKey: "count") as! Int + 1), forKey: "count")
         UserDefaults().set(newTask.id, forKey: "taskID_\(count)")
@@ -36,12 +30,11 @@ struct Manager{
     }
     
     // Get the tasks from memory on launch
-    func getFromMemory(){
+    func bringSavedTasksFromMemory(){
         //These lines are for bringing previously created Tasks back...
         guard let count = UserDefaults().value(forKey: "count") as? Int else {
             return
         }
-        
         for x in 0..<count {
             guard let id = UserDefaults().value(forKey: "taskID_\(x+1)") as? Int else {
                 continue
@@ -55,26 +48,15 @@ struct Manager{
             guard let date = UserDefaults().value(forKey: "taskDate_\(x+1)") as? Date else {
                 continue
             }
-            _ = Task(name: name, notes: notes, date: date, id: id) //adds to catalog
+            Task.addToCatalog(Task(name: name, notes: notes, date: date, id: id)) //adds to the catalog
         }
     }
-    
-    
-    func dateFormatter(format date: Date) -> String{
-        let formatter = DateFormatter()
-        formatter.dateFormat = "d MMM E, HH:mm"
-        return formatter.string(from: date)
-    }
-    
-    func isItPassed(_ date: Date) -> Bool {
-        return Date() >= date
-    }
-    
+
     // Update tasks from memory
-    func refreshTasks() -> [Task]? {
-        var tasks: [Task] = []
+    func refreshTasks() throws -> [Task]  {
+        var tasks = [Task]()
         guard let count = UserDefaults().value(forKey: "count") as? Int else {
-            return nil
+            throw TrackerError["Search for invalid key"]
         }
         for x in 0..<count {
             guard let taskID = UserDefaults().value(forKey: "taskID_\(x+1)") as? Int else {
@@ -91,6 +73,22 @@ struct Manager{
         }
         
         return tasks
+    }
+    
+    func convertDateToString(format date: Date) -> String{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d MMM E, HH:mm"
+        return formatter.string(from: date)
+    }
+    
+    func convertStringtoDate(format str: String) -> Date{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d MMM E, HH:mm"
+        return formatter.date(from: str) ?? Date()
+    }
+    
+    func hasThisDatePassed(_ date: Date) -> Bool {
+        return Date() >= date
     }
 
 }

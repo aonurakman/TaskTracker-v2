@@ -21,7 +21,14 @@ struct Task {
         self.notes = notes
         self.date = date
         self.id = id
-        Task.catalog[id]=self
+    }
+    
+    static func addToCatalog(_ newTask: Task){
+        catalog[newTask.id] = newTask
+    }
+    
+    static func deleteFromCatalog (taskID: Int) {
+        catalog[taskID] = nil
     }
     
     static subscript(id: Int) -> Task?{

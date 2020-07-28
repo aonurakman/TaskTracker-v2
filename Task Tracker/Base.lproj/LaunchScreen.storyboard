@@ -16,11 +16,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="playstore" translatesAutoresizingMaskIntoConstraints="NO" id="4nc-gw-TqY">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="launchScreenIcon" translatesAutoresizingMaskIntoConstraints="NO" id="4nc-gw-TqY">
                                 <rect key="frame" x="0.0" y="336" width="414" height="224"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" name="backgroundColor"/>
+                        <color key="backgroundColor" name="launchScreeenBackgroundColors"/>
                         <constraints>
                             <constraint firstItem="4nc-gw-TqY" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="X0L-rH-UvM"/>
                             <constraint firstItem="4nc-gw-TqY" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="wzg-EY-uaW"/>
@@ -34,8 +34,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="playstore" width="128" height="128"/>
-        <namedColor name="backgroundColor">
+        <image name="launchScreenIcon" width="256" height="256"/>
+        <namedColor name="launchScreeenBackgroundColors">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
