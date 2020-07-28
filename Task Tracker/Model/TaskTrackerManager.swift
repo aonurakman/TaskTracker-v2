@@ -92,3 +92,17 @@ struct TaskTrackerManager{
     }
 
 }
+
+enum TrackerError: String, Error {
+    case UnexpectedError = "Unexpected Error"
+    case InvalidKey = "Search for invalid key"
+    
+    static subscript(raw: String) -> TrackerError{
+        if let error = TrackerError(rawValue: raw) {
+            return error
+        }
+        else {
+            return TrackerError.UnexpectedError
+        }
+    }
+}

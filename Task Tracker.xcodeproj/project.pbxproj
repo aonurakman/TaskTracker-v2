@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		CA4D23C824D03A7800FD7F1B /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D23C724D03A7800FD7F1B /* Protocols.swift */; };
-		CA4D23CA24D03ABD00FD7F1B /* TrackerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D23C924D03ABD00FD7F1B /* TrackerError.swift */; };
 		CA4D23CC24D03C4A00FD7F1B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4D23CB24D03C4A00FD7F1B /* Extensions.swift */; };
 		CAE084AB24C96DD80044B280 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE084AA24C96DD80044B280 /* AppDelegate.swift */; };
 		CAE084AD24C96DD80044B280 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE084AC24C96DD80044B280 /* SceneDelegate.swift */; };
@@ -23,7 +22,6 @@
 
 /* Begin PBXFileReference section */
 		CA4D23C724D03A7800FD7F1B /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
-		CA4D23C924D03ABD00FD7F1B /* TrackerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerError.swift; sourceTree = "<group>"; };
 		CA4D23CB24D03C4A00FD7F1B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CAE084A724C96DD80044B280 /* Task Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Task Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAE084AA24C96DD80044B280 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -103,7 +101,6 @@
 				CAE0DAC624CAACCF00AB0327 /* TaskTrackerManager.swift */,
 				CAE0DACB24CABA0A00AB0327 /* Task.swift */,
 				CA4D23C724D03A7800FD7F1B /* Protocols.swift */,
-				CA4D23C924D03ABD00FD7F1B /* TrackerError.swift */,
 				CA4D23CB24D03C4A00FD7F1B /* Extensions.swift */,
 			);
 			path = Model;
@@ -184,7 +181,6 @@
 				CA4D23CC24D03C4A00FD7F1B /* Extensions.swift in Sources */,
 				CAE084BF24C9BA090044B280 /* NewEntryScreenViewController.swift in Sources */,
 				CA4D23C824D03A7800FD7F1B /* Protocols.swift in Sources */,
-				CA4D23CA24D03ABD00FD7F1B /* TrackerError.swift in Sources */,
 				CAE0DAC724CAACCF00AB0327 /* TaskTrackerManager.swift in Sources */,
 				CAE084AB24C96DD80044B280 /* AppDelegate.swift in Sources */,
 				CAE0DACC24CABA0A00AB0327 /* Task.swift in Sources */,
