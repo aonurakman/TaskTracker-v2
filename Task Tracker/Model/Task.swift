@@ -10,6 +10,7 @@ import Foundation
 
 
 struct Task {
+    
     static var catalog: Dictionary<Int,Task> = [:]
     let id: Int
     var name: String

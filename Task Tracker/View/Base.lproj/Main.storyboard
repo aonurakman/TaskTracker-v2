@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main Screen View Controller-->
+        <!--Task Listing View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainScreenViewController" customModule="Task_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="TaskListingViewController" customModule="Task_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,7 +114,7 @@
         <!--New Task-->
         <scene sceneID="fsh-cj-BLh">
             <objects>
-                <viewController storyboardIdentifier="entry" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aUR-Dp-sjY" customClass="NewEntryScreenViewController" customModule="Task_Tracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="entry" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aUR-Dp-sjY" customClass="NewTaskCreatingViewController" customModule="Task_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yRt-rb-V0X">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -239,7 +239,7 @@
         <!--Navigation Controller-->
         <scene sceneID="im9-pO-cI6">
             <objects>
-                <navigationController storyboardIdentifier="navContToNewEntryScreen" automaticallyAdjustsScrollViewInsets="NO" id="PHi-L6-OJV" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationControllerOfNewTaskCreatingView" automaticallyAdjustsScrollViewInsets="NO" id="PHi-L6-OJV" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="sOa-rw-XSa"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="017-zd-gU1">

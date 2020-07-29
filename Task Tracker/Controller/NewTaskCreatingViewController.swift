@@ -8,7 +8,15 @@
 
 import UIKit
 
-class NewEntryScreenViewController: UIViewController {
+protocol UsesDateInput{
+    func createDatePickerKeyboardForDateInput()
+}
+
+protocol AdaptsDeviceOrientation{
+    func adjustUiElementsForDeviceOrientation()
+}
+
+class NewTaskCreatingViewController: UIViewController {
 
     @IBOutlet weak var bigStack: UIStackView!
     @IBOutlet weak var notesField: UITextView!
@@ -21,12 +29,6 @@ class NewEntryScreenViewController: UIViewController {
     
     var idForNewTask: Int!
     
-    //The method that main view uses for displaying an existing task in this view
-    func getIdOfTaskFromMainView(taskID: Int?, newTaskEntryDelegate: NewTaskEntryDelegate) {
-        self.idForNewTask = taskID ?? UserDefaults().value(forKey: "count") as! Int + 1
-        self.newTaskEntryDelegate = newTaskEntryDelegate
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.gestureCreator()
@@ -35,7 +37,14 @@ class NewEntryScreenViewController: UIViewController {
         adjustUiElementsForDeviceOrientation()
         
         isDataPassedFromMainView()
-        timeField.text = taskTrackerManager.convertDateToString(format: datePicker.date)
+        timeField.text = datePicker.date.convertToString()
+    }
+    
+    //The method that main view uses for displaying an existing task in this view
+    func getIdOfTaskFromMainView(taskID: Int?, newTaskEntryDelegate: NewTaskEntryDelegate) {
+        self.idForNewTask =
+            taskID ?? UserDefaults().value(forKey: "lastGeneratedTaskID") as! Int + 1
+        self.newTaskEntryDelegate = newTaskEntryDelegate
     }
     
     func isDataPassedFromMainView () { // Are we here to update an existing task?
@@ -53,7 +62,9 @@ class NewEntryScreenViewController: UIViewController {
             return
         }
         
-        taskTrackerManager.addNewTaskToTheMemory(name: taskName, note: notesField.text ?? " ", date: datePicker.date, count: idForNewTask)
+        let generatedTask = Task(name: taskName, notes: notesField.text ?? " ", date: datePicker.date, id: idForNewTask)
+        
+        taskTrackerManager.saveNewTask(newTask: generatedTask)
         self.newTaskEntryDelegate?.didUserCreateNewTask(self)
         dismiss(animated: true, completion: nil)
     }
@@ -64,7 +75,7 @@ class NewEntryScreenViewController: UIViewController {
 }
 
 
-extension NewEntryScreenViewController: AdaptsDeviceOrientation {
+extension NewTaskCreatingViewController: AdaptsDeviceOrientation {
     //Should adapt to the phone orientation
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -82,14 +93,14 @@ extension NewEntryScreenViewController: AdaptsDeviceOrientation {
     }
 }
 
-extension NewEntryScreenViewController: UITextFieldDelegate {
+extension NewTaskCreatingViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         notesField.selectAll(textField)
         return true
     }
 }
 
-extension NewEntryScreenViewController: UsesDateInput {
+extension NewTaskCreatingViewController: UsesDateInput {
     //Enables us to use datepicker keyboard for date input
     func createDatePickerKeyboardForDateInput() {
         datePicker.date = Date()
@@ -104,7 +115,7 @@ extension NewEntryScreenViewController: UsesDateInput {
     }
     
     @objc func doneActionCreator(){
-        timeField.text = taskTrackerManager.convertDateToString(format: datePicker.date)
+        timeField.text = datePicker.date.convertToString()
         self.view.endEditing(true)
     }
 }
