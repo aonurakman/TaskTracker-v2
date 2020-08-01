@@ -11,9 +11,11 @@ import UIKit
 // Scroll to after struct's closing curly bracket to find more
 struct TaskTrackerManager {
     
+    let userDefStandard = UserDefaults.standard
+    
     func checkIfFirstLaunchEver(){ //Is it the first launch ever?
         if UserDefaults.checkIfFirstLaunchEver() { // Is it the first time?
-            UserDefaults().set(0, forKey: "lastGeneratedTaskID")
+            userDefStandard.set(0, forKey: "lastGeneratedTaskID")
         }
     }
     
@@ -26,7 +28,7 @@ struct TaskTrackerManager {
     // Get the tasks from memory on launch
     func bringSavedTasks(){
         //These lines are for bringing previously created Tasks back...
-        guard let taskCount = UserDefaults().value(forKey: "lastGeneratedTaskID") as? Int else {
+        guard let taskCount = userDefStandard.value(forKey: "lastGeneratedTaskID") as? Int else {
             return
         }
         for x in 0..<taskCount {
@@ -39,11 +41,11 @@ struct TaskTrackerManager {
     // Update tasks from memory
     func refreshTasks() throws -> [Task]  {
         var tasks = [Task]()
-        guard let count = UserDefaults().value(forKey: "lastGeneratedTaskID") as? Int else {
+        guard let count = userDefStandard.value(forKey: "lastGeneratedTaskID") as? Int else {
             throw TrackerError["Search for invalid key"]
         }
         for x in 0..<count {
-            guard let taskID = UserDefaults().value(forKey: "taskID_\(x+1)") as? Int else {
+            guard let taskID = userDefStandard.value(forKey: "taskID_\(x+1)") as? Int else {
                 continue
             }
             guard let task = Task[taskID] else {
@@ -53,7 +55,7 @@ struct TaskTrackerManager {
         }
         
         if tasks.count == 0 {
-            UserDefaults().set(0, forKey: "lastGeneratedTaskID")
+            userDefStandard.set(0, forKey: "lastGeneratedTaskID")
         }
         
         return tasks

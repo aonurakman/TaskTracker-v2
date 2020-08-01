@@ -43,7 +43,7 @@ class NewTaskCreatingViewController: UIViewController {
     //The method that main view uses for displaying an existing task in this view
     func getIdOfTaskFromMainView(taskID: Int?, newTaskEntryDelegate: NewTaskEntryDelegate) {
         self.idForNewTask =
-            taskID ?? UserDefaults().value(forKey: "lastGeneratedTaskID") as! Int + 1
+            taskID ?? UserDefaults.standard.value(forKey: "lastGeneratedTaskID") as! Int + 1
         self.newTaskEntryDelegate = newTaskEntryDelegate
     }
     

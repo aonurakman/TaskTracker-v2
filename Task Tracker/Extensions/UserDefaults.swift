@@ -10,24 +10,26 @@ import Foundation
 
 extension UserDefaults {
     static func saveTask(_ newTask: Task) {
-        UserDefaults().set((UserDefaults().value(forKey: "lastGeneratedTaskID") as! Int + 1), forKey: "lastGeneratedTaskID")
-        UserDefaults().set(newTask.id, forKey: "taskID_\(newTask.id)")
-        UserDefaults().set(newTask.name, forKey: "taskName_\(newTask.id)")
-        UserDefaults().set(newTask.date, forKey: "taskDate_\(newTask.id)")
-        UserDefaults().set(newTask.notes, forKey: "taskNote_\(newTask.id)")
+        let userDefStandard = UserDefaults.standard
+        userDefStandard.set((UserDefaults().value(forKey: "lastGeneratedTaskID") as! Int + 1), forKey: "lastGeneratedTaskID")
+        userDefStandard.set(newTask.id, forKey: "taskID_\(newTask.id)")
+        userDefStandard.set(newTask.name, forKey: "taskName_\(newTask.id)")
+        userDefStandard.set(newTask.date, forKey: "taskDate_\(newTask.id)")
+        userDefStandard.set(newTask.notes, forKey: "taskNote_\(newTask.id)")
     }
     
     static func getCompleteTask(withID: Int) -> Task? {
-        guard let id = UserDefaults().value(forKey: "taskID_\(withID)") as? Int else {
+        let userDefStandard = UserDefaults.standard
+        guard let id = userDefStandard.value(forKey: "taskID_\(withID)") as? Int else {
             return nil
         }
-        guard let name = UserDefaults().value(forKey: "taskName_\(withID)") as? String else {
+        guard let name = userDefStandard.value(forKey: "taskName_\(withID)") as? String else {
             return nil
         }
-        guard let notes = UserDefaults().value(forKey: "taskNote_\(withID)") as? String else {
+        guard let notes = userDefStandard.value(forKey: "taskNote_\(withID)") as? String else {
             return nil
         }
-        guard let date = UserDefaults().value(forKey: "taskDate_\(withID)") as? Date else {
+        guard let date = userDefStandard.value(forKey: "taskDate_\(withID)") as? Date else {
             return nil
         }
         
@@ -37,8 +39,9 @@ extension UserDefaults {
 
 extension UserDefaults {
     static func checkIfFirstLaunchEver() -> Bool {
-        if !UserDefaults().bool(forKey: "firstLaunchEver"){
-            UserDefaults().set(true, forKey: "firstLaunchEver")
+        let userDefStandard = UserDefaults.standard
+        if !userDefStandard.bool(forKey: "firstLaunchEver"){
+            userDefStandard.set(true, forKey: "firstLaunchEver")
             return true
         }
         return false
@@ -47,6 +50,6 @@ extension UserDefaults {
 
 extension UserDefaults {
     static func deleteTask(id: Int) {
-        UserDefaults().set(nil , forKey: "taskID_\(id)")
+        UserDefaults.standard.set(nil , forKey: "taskID_\(id)")
     }
 }
